@@ -180,9 +180,8 @@
 (defn main-template [{:keys [score cur-time jump-count
                              timer-running border-pos
                              flappy-y pillar-list]}]
-  (sab/html [:div.board { :onMouseDown (fn [e]
-                                         (swap! flap-state jump)
-                                         (.preventDefault e))}
+  (defn flap [e] (swap! flap-state jump) (.preventDefault e))
+  (sab/html [:div.board { :onTouchStart flap :onMouseDown flap }
              [:h1.score score]
              (if-not timer-running
                [:a.start-button {:onClick #(start-game)}
