@@ -181,7 +181,7 @@
                              timer-running border-pos
                              flappy-y pillar-list]}]
   (defn flap [e] (swap! flap-state jump) (.preventDefault e))
-  (sab/html [:div.board { :onMouseDown flap }
+  (sab/html [:div.board { :onClick flap }
              [:h1.score score]
              (if-not timer-running
                [:a.start-button {:onClick #(start-game)}
