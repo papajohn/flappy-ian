@@ -17,15 +17,15 @@
   (floor (+ start-pos (* time vel))))
 
 (def horiz-vel -0.15)
-(def gravity 0.03)
-(def jump-vel 12)
+(def gravity 0.02)
+(def jump-vel 10)
 (def start-y 140)
 (def bottom-y 561)
 (def flappy-x 212)
 (def flappy-width 80)
 (def flappy-height 233)
 (def pillar-spacing 324)
-(def pillar-gap 320)
+(def pillar-gap 360)
 (def pillar-width 86)
 
 (def starting-state { :timer-running false
@@ -38,7 +38,7 @@
                       [{ :start-time 0
                          :pos-x 900
                          :cur-x 900
-                         :gap-top 200 }]})
+                         :gap-top 100 }]})
 
 (defn reset-state [_ cur-time]
   (-> starting-state
@@ -97,7 +97,7 @@
 (defn sine-wave [st]
   (assoc st
     :flappy-y
-    (+ start-y (* 30 (.sin js/Math (/ (:time-delta st) 300))))))
+    (+ start-y (* 40 (.sin js/Math (/ (:time-delta st) 300))))))
 
 (defn update-flappy [{:keys [time-delta initial-vel flappy-y jump-count] :as st}]
   (if (pos? jump-count)
